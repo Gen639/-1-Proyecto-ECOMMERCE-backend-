@@ -9,6 +9,16 @@ const UserController = {
       )
       .catch(console.error);
   },
+  getAll(req, res) {
+    User.findAll()
+      .then((users) => res.send(users))
+      .catch((err) => {
+        console.log(err);
+        res
+          .status(500)
+          .send({ message: "There was a problem of getting all users" });
+      });
+  },
 };
 
 module.exports = UserController;
