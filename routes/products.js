@@ -10,13 +10,13 @@ router.get("/", ProductController.getAll);
 //El endpoint de traer productos debe mostrarse junto a la categoría o categorías que pertenece
 router.get("/category/:id", ProductController.getByIdCateg);
 //Endpoint que traiga un producto por su id
-router.get("/:id", ProductController.getById);
+router.get("/id/:id", ProductController.getById);
 //Filtro que ordene los productos de mayor a menor precio
 router.get("/filter/highToLowPrice", ProductController.highToLow);
 
 //Endpoint para actualizar un producto
-router.put("/:id", ProductController.updateById);
+router.put("/id/:id", ProductController.updateById);
 //Endpoint para eliminar un producto
-router.delete("/:id", ProductController.delete);
+router.delete("/id/:id", ProductController.delete);
 
 module.exports = router;

@@ -4,11 +4,15 @@ const { Op } = require("sequelize");
 const ProductController = {
   create(req, res) {
     const { name, price, CategoryId } = req.body;
-
+    const existingCategory = Category.findByPk(CategoryId);
     if (!name || !price || !CategoryId) {
       res
         .status(400)
         .send("All camps (name, price and CategoryId) have to be filled");
+    }
+
+    if (!existingCategory) {
+      return res.status(400).send({ error: "Category not found" });
     }
 
     Product.create(req.body)
@@ -47,6 +51,15 @@ const ProductController = {
       });
   },
   async updateById(req, res) {
+    const existingProduct = await Product.findByPk(req.params.id);
+    const existingCategory = await Category.findByPk(categoryId);
+    if (!existingProduct) {
+      return res.status(404).send({ error: "Product not found" });
+    }
+    if (!existingCategory) {
+      return res.status(400).send({ error: "Category not found" });
+    }
+
     await Product.update(
       {
         name: req.body.name,
@@ -59,19 +72,53 @@ const ProductController = {
     );
     res.send("Product was succesfully updated");
   },
+
   async delete(req, res) {
-    await Product.destroy({
-      where: { id: req.params.id },
-    });
-    res.send("The product was succesfully deleted");
+    try {
+      const deletedProductCount = await Product.destroy({
+        where: { id: req.params.id },
+      });
+
+      if (deletedProductCount > 0) {
+        res.send("The product was successfully deleted");
+      } else {
+        res.status(404).send({ error: "Product not found" });
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      res.status(500).send({ error: "Internal Server Error" });
+    }
   },
+
   getByIdCateg(req, res) {
     Product.findByPk(req.params.id, {
       include: [{ model: Category, attributes: ["name"] }],
-    }).then((product) => res.send(product));
+    })
+      .then((product) => {
+        if (product) {
+          res.send(product);
+        } else {
+          res.status(404).send({ error: "Product is not found" });
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        res.status(500).send({ error: "Internal Server Error" });
+      });
   },
   getById(req, res) {
-    Product.findByPk(req.params.id).then((product) => res.send(product));
+    Product.findByPk(req.params.id)
+      .then((product) => {
+        if (product) {
+          res.send(product);
+        } else {
+          res.status(404).send({ error: "Product is not found" });
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        res.status(500).send({ error: "Internal Server Error" });
+      });
   },
 
   highToLow(req, res) {
