@@ -7,9 +7,9 @@ const app = express();
 router.get('/', categoriasController.obtenerCategoriasConProductos);
 router.get('/:id', categoriasController.obtenerCategoriaPorId);
 router.get('/buscar', categoriasController.buscarCategoriaPorNombre);
+router.put("/",categoriasController.crearCategoria);
 // Configura otras rutas CRUD
 
 module.exports = router;
 
 
-app.use('/categorias', categoriasRoutes);

@@ -57,5 +57,6 @@ module.exports = {
   obtenerCategoriasConProductos,
   obtenerCategoriaPorId,
   buscarCategoriaPorNombre,
+  crearCategoria
   // ... otras funciones CRUD
 };
