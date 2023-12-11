@@ -4,7 +4,8 @@ const { Op } = require('sequelize');
 
 // Crear una categoría
 const crearCategoria = async (req, res) => {
-    const { nombre } = req.body;
+    const { nombre } = req.body; 
+}
 
 
 // Operaciones CRUD
