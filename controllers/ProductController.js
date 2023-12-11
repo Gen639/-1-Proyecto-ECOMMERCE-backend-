@@ -1,10 +1,10 @@
-const { Product, Category } = require("../models/index.js");
+const { Product, Categoria } = require("../models/index.js");
 const { Op } = require("sequelize");
 
 const ProductController = {
   create(req, res) {
     const { name, price, CategoryId } = req.body;
-    const existingCategory = Category.findByPk(CategoryId);
+    const existingCategory = Categoria.findByPk(CategoryId);
     if (!name || !price || !CategoryId) {
       res
         .status(400)
@@ -21,7 +21,7 @@ const ProductController = {
           .status(201)
           .send({ message: "Product succesfully created", product })
       )
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   },
   getAll(req, res) {
     const { productName, productPrice } = req.query;
@@ -52,7 +52,7 @@ const ProductController = {
   },
   async updateById(req, res) {
     const existingProduct = await Product.findByPk(req.params.id);
-    const existingCategory = await Category.findByPk(categoryId);
+    const existingCategory = await Categoria.findByPk(categoryId);
     if (!existingProduct) {
       return res.status(404).send({ error: "Product not found" });
     }
@@ -92,7 +92,7 @@ const ProductController = {
 
   getByIdCateg(req, res) {
     Product.findByPk(req.params.id, {
-      include: [{ model: Category, attributes: ["name"] }],
+      include: [{ model: Categoria, attributes: ["name"] }],
     })
       .then((product) => {
         if (product) {
