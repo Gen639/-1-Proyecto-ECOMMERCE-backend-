@@ -21,7 +21,7 @@ const ProductController = {
           .status(201)
           .send({ message: "Product succesfully created", product })
       )
-      .catch(console.error);
+      .catch(err => console.log(err));
   },
   getAll(req, res) {
     const { productName, productPrice } = req.query;
