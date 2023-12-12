@@ -10,8 +10,6 @@ const crearCategoria = async (req, res) => {
     .catch((err) => console.log(err));
 };
 
-// Operaciones CRUD
-
 // Obtener todas las categorías con productos asociados
 const obtenerCategoriasConProductos = async (req, res) => {
   try {
@@ -42,18 +40,27 @@ const obtenerCategoriaPorId = async (req, res) => {
 };
 
 // Filtrar categoría por nombre
-const buscarCategoriaPorNombre = async (req, res) => {
-  try {
-    const { name } = req.query;
-    const categories = await Category.findAll({
-      where: { name: { [Op.like]: `%${name}%` } },
-    });
+const buscarCategoriaPorNombre = (req, res) => {
+  // try {
+  //
+  //   const categories = await Category.findAll({
+  //     where: { name: { [Op.like]: `%${name}%` } },
+  //   });
 
-    res.send({ message: "Resultado de la busqueda", categories });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: "Error al buscar la categoría por nombre." });
-  }
+  //   res.send({ message: "Resultado de la busqueda:", categories });
+  // } catch (error) {
+  //   console.error(error);
+  //   res.status(500).send({ error: "Error al buscar la categoría por nombre." });
+  // }
+  const { name } = req.query;
+  Category.findAll({ where: { name: { [Op.like]: `%${name}%` } } })
+    .then((categories) => res.send(categories))
+    .catch((err) => {
+      console.log(err);
+      res
+        .status(500)
+        .send({ message: "There was a problem of getting categories" });
+    });
 };
 
 module.exports = {
