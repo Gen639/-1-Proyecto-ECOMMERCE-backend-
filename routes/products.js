@@ -8,7 +8,7 @@ router.post("/", ProductController.create);
 //El endpoint de traer todos productos
 router.get("/", ProductController.getAll);
 //El endpoint de traer productos debe mostrarse junto a la categoría o categorías que pertenece
-router.get("/category/:id", ProductController.getByIdCateg);
+router.get("/withCategory/:id", ProductController.getByIdCateg);
 //Endpoint que traiga un producto por su id
 router.get("/id/:id", ProductController.getById);
 //Filtro que ordene los productos de mayor a menor precio

@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const categoriasController = require("../controllers/CategoriesController");
+const CategoryController = require("../controllers/CategoryController");
 
 const app = express();
 
-router.get("/", categoriasController.obtenerCategoriasConProductos);
-router.get("/:id", categoriasController.obtenerCategoriaPorId);
-router.get("/buscar", categoriasController.buscarCategoriaPorNombre);
-router.post("/", categoriasController.crearCategoria);
+router.get("/", CategoryController.obtenerCategoriasConProductos);
+router.get("/:id", CategoryController.obtenerCategoriaPorId);
+router.get("/buscar", CategoryController.buscarCategoriaPorNombre);
+router.post("/", CategoryController.crearCategoria);
 // Configura otras rutas CRUD
 
 module.exports = router;
