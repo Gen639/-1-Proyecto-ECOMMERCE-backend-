@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 
 // Crear una categoría
 const crearCategoria = async (req, res) => {
-  const { nombre } = req.body;
+  const { name } = req.body;
   Category.create(req.body)
     .then((category) => res.status(201).send(category))
     .catch((err) => console.log(err));

@@ -1,0 +1,5 @@
+sequelize model:generate --name Category --attributes name:string
+
+Orders
+
+sequelize model:generate --name Orders --attributes number:integer,date:dateonly,UserId:integer
