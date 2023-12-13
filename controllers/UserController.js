@@ -22,6 +22,21 @@ const UserController = {
           .send({ message: "There was a problem of getting all users" });
       });
   },
+  async login(req, res) {
+    await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    }).then((user) => {
+      const isMatch = bcrypt.compareSync(req.body.password, user.password);
+      if (!user || !isMatch) {
+        return res
+          .status(400)
+          .send({ message: "Usuario o contraseña incorrectos" });
+      }
+      res.send(user);
+    });
+  },
 };
 
 module.exports = UserController;
