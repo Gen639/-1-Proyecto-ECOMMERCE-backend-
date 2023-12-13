@@ -1,13 +1,16 @@
 const { User } = require("../models/index.js");
+const bcrypt = require("bcryptjs");
 
 const UserController = {
   create(req, res) {
     req.body.role = "user";
-    User.create(req.body)
+    const password = bcrypt.hashSync(req.body.password, 10);
+
+    User.create({ ...req.body, password })
       .then((user) =>
         res.status(201).send({ message: "Usuario creado con éxito", user })
       )
-      .catch(console.error);
+      .catch((err) => console.error(err));
   },
   getAll(req, res) {
     User.findAll()
