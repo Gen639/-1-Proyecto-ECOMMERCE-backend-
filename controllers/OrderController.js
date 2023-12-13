@@ -5,7 +5,7 @@ const OrderController = {
     try {
       const { number, date, UserId, ProductId } = req.body;
 
-      if (!number || !date || !UserId || ProductId) {
+      if (!number || !date || !UserId || !ProductId) {
         return res
           .status(400)
           .send(

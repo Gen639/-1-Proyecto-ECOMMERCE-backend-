@@ -31,24 +31,41 @@ const UserController = {
       },
     }).then((user) => {
       const isMatch = bcrypt.compareSync(req.body.password, user.password);
-      // if (!user || !isMatch) {
-      //   return res
-      //     .status(400)
-      //     .send({ message: "Usuario o contraseña incorrectos" });
-      // }
-
-      if (!user) {
-        return res.status(400).send({ message: "Usuario  incorrecto" });
-      }
-
-      if (!isMatch) {
-        return res.status(400).send({ message: " contraseña incorrecta" });
+      if (!user || !isMatch) {
+        return res
+          .status(400)
+          .send({ message: "Usuario o contraseña incorrectos" });
       }
 
       const token = jwt.sign({ id: user.id }, jwt_secret);
       Token.create({ token, UserId: user.id });
       res.send({ message: "Bienvenid@ " + user.name, user, token });
     });
+  },
+  getUserInfo(req, res) {
+    User.findByPk(req.params.id, {
+      include: [
+        {
+          model: Order,
+          include: [
+            {
+              model: Product,
+              through: "ProductOrder", // Specify the name of your join table
+            },
+          ],
+        },
+      ],
+    })
+      .then((user) => {
+        if (!user) {
+          return res.status(404).send({ message: "User not found" });
+        }
+        res.send({ user });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        res.status(500).send({ error: "Internal Server Error" });
+      });
   },
 };
 
