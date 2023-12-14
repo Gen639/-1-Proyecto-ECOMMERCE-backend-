@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const ProductController = require("../controllers/ProductController.js");
-const { authentication } = require("../middlewares/authentication.js");
+const { authentication, isAdmin } = require("../middlewares/authentication.js");
 
 //Endpoint para crear un producto
-router.post("/", authentication, ProductController.create);
+router.post("/", authentication, isAdmin, ProductController.create);
 
 //El endpoint de traer todos productos
 router.get("/", ProductController.getAll);
@@ -16,8 +16,8 @@ router.get("/id/:id", ProductController.getById);
 router.get("/filter/highToLowPrice", ProductController.highToLow);
 
 //Endpoint para actualizar un producto
-router.put("/id/:id", authentication, ProductController.updateById);
+router.put("/id/:id", authentication, isAdmin, ProductController.updateById);
 //Endpoint para eliminar un producto
-router.delete("/id/:id", authentication, ProductController.delete);
+router.delete("/id/:id", authentication, isAdmin, ProductController.delete);
 
 module.exports = router;
