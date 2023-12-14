@@ -1,4 +1,4 @@
-const { User, Token } = require("../models/index.js");
+const { User, Token, Order, Product } = require("../models/index.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { jwt_secret } = require("../config/config.json")["development"];
@@ -47,6 +47,7 @@ const UserController = {
       include: [
         {
           model: Order,
+          attributes: ["id", "number"],
           include: [
             {
               model: Product,
