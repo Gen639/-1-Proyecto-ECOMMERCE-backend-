@@ -21,8 +21,8 @@ const OrderController = {
         number,
         date,
         UserId,
-        ProductId,
       });
+      await createdOrder.addProduct(ProductId);
 
       res.status(201).send({
         message: "Order successfully created",
