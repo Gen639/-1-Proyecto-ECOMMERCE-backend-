@@ -24,19 +24,19 @@ const ProductController = {
       .catch((err) => console.log(err));
   },
   getAll(req, res) {
-    const { productName, productPrice } = req.query;
+    const { name, price } = req.query;
     let whereCondition = {};
-    if (productName) {
+    if (name) {
       whereCondition = {
         name: {
-          [Op.like]: `%${productName}%`,
+          [Op.like]: `%${name}%`,
         },
       };
     }
-    if (productPrice) {
+    if (price) {
       whereCondition = {
         price: {
-          [Op.like]: `%${productPrice}%`,
+          [Op.like]: `%${price}%`,
         },
       };
     }
@@ -76,7 +76,6 @@ const ProductController = {
     );
     res.send("Product was succesfully updated");
   },
-
   async delete(req, res) {
     try {
       const deletedProductCount = await Product.destroy({
@@ -84,7 +83,7 @@ const ProductController = {
       });
 
       if (deletedProductCount > 0) {
-        res.send("The product was successfully deleted");
+        res.send("The product successfully deleted");
       } else {
         res.status(404).send({ error: "Product not found" });
       }
@@ -93,7 +92,6 @@ const ProductController = {
       res.status(500).send({ error: "Internal Server Error" });
     }
   },
-
   getByIdCateg(req, res) {
     Product.findByPk(req.params.id, {
       include: [{ model: Category, attributes: ["name"] }],

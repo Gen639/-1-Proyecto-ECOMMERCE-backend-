@@ -8,6 +8,9 @@ router.get("/", CategoryController.obtenerCategoriasConProductos);
 router.get("/id/:id", CategoryController.obtenerCategoriaPorId);
 router.get("/buscar", CategoryController.buscarCategoriaPorNombre);
 router.post("/", CategoryController.crearCategoria);
-// Configura otras rutas CRUD
+// delete
+router.delete("/:id", CategoryController.borrarCategoria);
+// put
+router.put("/:id", CategoryController.updateCategoria);
 
 module.exports = router;
