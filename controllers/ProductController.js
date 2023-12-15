@@ -2,18 +2,18 @@ const { Product, Category } = require("../models/index.js");
 const { Op } = require("sequelize");
 
 const ProductController = {
-  create(req, res) {
+  create(req, res, next) {
     const { name, price, CategoryId } = req.body;
     const existingCategory = Category.findByPk(CategoryId);
-    if (!name || !price || !CategoryId) {
-      res
-        .status(400)
-        .send("All camps (name, price and CategoryId) have to be filled");
-    }
+    // if (!name || !price || !CategoryId) {
+    //   res
+    //     .status(400)
+    //     .send("All camps (name, price and CategoryId) have to be filled");
+    // }
 
-    if (!existingCategory) {
-      return res.status(400).send({ error: "Category not found" });
-    }
+    // if (!existingCategory) {
+    //   return res.status(400).send({ error: "Category not found" });
+    // }
 
     Product.create(req.body)
       .then((product) =>
@@ -21,7 +21,11 @@ const ProductController = {
           .status(201)
           .send({ message: "Product succesfully created", product })
       )
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        // res.send(err.errors[0].message);
+        next(err);
+      });
   },
   getAll(req, res) {
     const { name, price } = req.query;
