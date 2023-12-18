@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: {
-            msg: "Please introducte name",
+            msg: "Please introduce name",
           },
         },
       },
