@@ -11,15 +11,18 @@ const jwt = require("jsonwebtoken");
 const { jwt_secret } = require("../config/config.json")["development"];
 
 const UserController = {
-  create(req, res) {
+  create(req, res, next) {
     req.body.role = "user";
     const password = bcrypt.hashSync(req.body.password, 10);
 
-    User.create({ ...req.body, password })
+    User.create({ ...req.body, password: password })
       .then((user) =>
-        res.status(201).send({ message: "Usuario creado con éxito", user })
+        res.status(201).send({ message: "User succesfully created", user })
       )
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.log(err);
+        next(err);
+      });
   },
   getAll(req, res) {
     User.findAll()

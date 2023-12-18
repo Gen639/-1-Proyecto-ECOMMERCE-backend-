@@ -23,7 +23,6 @@ const ProductController = {
       )
       .catch((err) => {
         console.log(err);
-        // res.send(err.errors[0].message);
         next(err);
       });
   },
