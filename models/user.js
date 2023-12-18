@@ -13,8 +13,27 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init(
     {
-      name: DataTypes.STRING,
-      email: DataTypes.STRING,
+      name: {type:DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Pls introduce the name",
+          },
+        }
+
+      },
+      email: { type: DataTypes.STRING,
+        allowNull:false,
+        validate:{
+          notNull:{
+            msg:"Please introduce email",
+          },
+          isEmail:{
+            msg:"Pleasde introduce valid email",
+          },
+        }
+
+      },
       password: DataTypes.STRING,
       role: DataTypes.STRING,
     },
@@ -25,3 +44,30 @@ module.exports = (sequelize, DataTypes) => {
   );
   return User;
 };
+
+
+
+
+// const User = sequelize.define('User', {
+//   user: {
+//     type: DataTypes.STRING,
+//     allowNull: false,
+//   },
+//   email: {
+//     type: DataTypes.STRING,
+//     allowNull: false,
+//     unique: true,
+//   },
+//   password: {
+//     type: DataTypes.STRING,
+//     allowNull: false,
+//   },
+// }, {
+//   hooks: {
+//     beforeValidate: (user, options) => {
+//       if (!user.username || !user.email || !user.password) {
+//         throw new Error('Todos los campos son obligatorios.');
+//       }
+//     },
+//   },
+// });

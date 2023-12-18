@@ -19,7 +19,7 @@ const obtenerCategoriasConProductos = async (req, res) => {
     res.json(categorias);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Error al obtener las categorías." });
+    res.status(500).json({ error: "Error getting category." });
   }
 };
 
@@ -31,11 +31,11 @@ const obtenerCategoriaPorId = async (req, res) => {
     if (categoria) {
       res.json(categoria);
     } else {
-      res.status(404).json({ error: "Categoría no encontrada." });
+      res.status(404).json({ error: "Category not found." });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Error al obtener la categoría." });
+    res.status(500).json({ error: "Error getting category." });
   }
 };
 

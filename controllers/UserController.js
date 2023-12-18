@@ -17,7 +17,7 @@ const UserController = {
 
     User.create({ ...req.body, password })
       .then((user) =>
-        res.status(201).send({ message: "Usuario creado con éxito", user })
+        res.status(201).send({ message: "User succesfully created", user })
       )
       .catch((err) => console.error(err));
   },
@@ -41,12 +41,12 @@ const UserController = {
       if (!user || !isMatch) {
         return res
           .status(400)
-          .send({ message: "Usuario o contraseña incorrectos" });
+          .send({ message: "User or Password are incorrect" });
       }
 
       const token = jwt.sign({ id: user.id }, jwt_secret);
       Token.create({ token, UserId: user.id });
-      res.send({ message: "Bienvenid@ " + user.name, user, token });
+      res.send({ message: "Welcome " + user.name, user, token });
     });
   },
   getUserInfo(req, res) {
@@ -86,12 +86,12 @@ const UserController = {
           ],
         },
       });
-      res.send({ message: "Desconectado con éxito" });
+      res.send({ message: "Succesfully logged out" });
     } catch (error) {
       console.log(error);
       res
         .status(500)
-        .send({ message: "hubo un problema al tratar de desconectarte" });
+        .send({ message: "there was a problem disconecting" });
     }
   },
 };
