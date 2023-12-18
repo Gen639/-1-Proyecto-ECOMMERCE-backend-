@@ -97,34 +97,34 @@ Desarrollar una API REST que cumpla con los siguientes criterios:
 
 ### Categorias
 
-## Obtener Todas las Categorías con Productos
+#### Obtener Todas las Categorías con Productos
 
 - **Ruta:** `GET / categories`
 - **Controlador:** `CategoryController.obtenerCategoriasConProductos`
 
-## Obtener Categoría por ID
+#### Obtener Categoría por ID
 
 - **Ruta:** `GET /categories /id/:id`
 - **Parámetro:** `id` (Identificador de la Categoría)
 - **Controlador:** `CategoryController.obtenerCategoriaPorId`
 
-## Buscar Categoría por Nombre
+#### Buscar Categoría por Nombre
 
 - **Ruta:** `GET / categories /buscar`
 - **Controlador:** `CategoryController.buscarCategoriaPorNombre`
 
-## Crear Nueva Categoría
+#### Crear Nueva Categoría
 
 - **Ruta:** `POST / categories`
 - **Controlador:** `CategoryController.crearCategoria`
 
-## Borrar Categoría
+#### Borrar Categoría
 
 - **Ruta:** `DELETE / categories / :id`
 - **Parámetro:** `id` (Identificador de la Categoría a borrar)
 - **Controlador:** `CategoryController.borrarCategoria`
 
-## Actualizar Categoría
+#### Actualizar Categoría
 
 - **Ruta:** `PUT / categories /:id`
 - **Parámetro:** `id` (Identificador de la Categoría a actualizar)
