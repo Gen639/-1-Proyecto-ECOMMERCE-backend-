@@ -2,6 +2,10 @@
 # Proyecto Backend - Tienda en Línea (E-commerce)
 
 
+
+![Banner  verduras](https://st3.depositphotos.com/1585135/13580/i/1600/depositphotos_135800676-stock-photo-fresh-colorful-vegetables-banner.jpg)
+
+
 ## Introducción
 
 Este proyecto de backend fusiona habilidades en Node.js, Express y MySQL/Sequelize. El enfoque principal es crear una API REST para una tienda en línea (e-commerce).
@@ -65,30 +69,34 @@ Desarrollar una API REST que cumpla con los siguientes criterios:
 
 #### Crear Usuario
 
-- **Ruta:** `POST /`
+- **Ruta:** `POST /users` 
 - **Controlador:** `UserController.create`
 
 #### Obtener Todos los Usuarios
 
-- **Ruta:** `GET /`
+- **Ruta:** `GET /users`
 - **Controlador:** `UserController.getAll`
 
 #### Iniciar Sesión
 
-- **Ruta:** `POST /login`
+- **Ruta:** `POST /users / login`
 - **Controlador:** `UserController.login`
 
 #### Obtener Órdenes del Usuario
 
-- **Ruta:** `GET /getUserOrders/:id`
+- **Ruta:** `GET /users / getUserOrders/:id`
 - **Parámetro:** `id` (Identificador del Usuario)
 - **Controlador:** `UserController.getUserInfo`
 
 #### Cerrar Sesión
 
-- **Ruta:** `DELETE /`
+- **Ruta:** `DELETE / users `
 - **Middleware:** `authentication` (Middleware de autenticación)
 - **Controlador:** `UserController.logout`
+
+
+### Categorias
+
 
 
 
