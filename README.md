@@ -137,7 +137,6 @@ Desarrollar una API REST que cumpla con los siguientes criterios:
 
 Endpoints Products
 Crear un Nuevo Producto
-
 Método: POST
 Ruta: /
 Middleware: authentication, isAdmin
