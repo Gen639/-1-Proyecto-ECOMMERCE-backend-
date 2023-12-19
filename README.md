@@ -131,53 +131,52 @@ Desarrollar una API REST que cumpla con los siguientes criterios:
 - **Controlador:** `CategoryController.updateCategoria`
 
 
+### Productos
+- Este endpoint se utiliza para recuperar información detallada de los productos en nuestra api.
+
+#### Crear un Nuevo Producto
+
+Este endpoint permite la creación de un nuevo producto. Solo los usuarios autenticados con privilegios de administrador pueden acceder a esta ruta.
+- **Ruta:** `POST /products`
+- **Middleware:** authentication, isAdmin
+- **Controlador:** `ProductController.create`
+
+#### Obtener Todos los Productos
+
+- **Ruta:** `GET/products`
+- **Controlador:** `ProductController.getAll`
+
+#### Obtener Producto con Categoría
+
+- **Ruta:** `GET /products/withCategory/:id`
+- **Controlador:** `ProductController.getByIdCateg`
+
+#### Obtener Producto por ID
+
+- **Ruta:** `GET /products/id/:id`
+- **Controlador:** `ProductController.getById`
+
+#### Filtrar Productos - Precio de Mayor a Menor
+
+- **Ruta:** `GET /products/filter/highToLowPrice`
+- **Controlador:** `ProductController.highToLow`
+
+#### Actualizar Producto por ID
+
+Actualiza los detalles de un producto específico. Solo los usuarios autenticados con privilegios de administrador pueden acceder a esta ruta.
+- **Ruta:** `PUT /products/id/:id`
+- **Middleware:** authentication, isAdmin
+- **Controlador:** `ProductController.updateById`
+
+#### Eliminar Producto por ID
+
+Elimina un producto específico del sistema. Solo los usuarios autenticados con privilegios de administrador pueden acceder a esta ruta.
+- **Ruta:** `DELETE /products/id/:id`
+- **Middleware:** authentication, isAdmin
+- **Método del Controlador:** `ProductController.delete`
 
 
-### Productos 
 
-Endpoints Products
-Crear un Nuevo Producto
-Método: POST
-Ruta: /
-Middleware: authentication, isAdmin
-Método del Controlador: ProductController.create
-Descripción: Este endpoint permite la creación de un nuevo producto. Solo los usuarios autenticados con privilegios de administrador pueden acceder a esta ruta.
-Obtener Todos los Productos
 
-Método: GET
-Ruta: /
-Método del Controlador: ProductController.getAll
-Descripción: Recupera todos los productos disponibles en el sistema.
-Obtener Producto con Categoría
 
-Método: GET
-Ruta: /withCategory/:id
-Método del Controlador: ProductController.getByIdCateg
-Descripción: Recupera productos junto con la categoría o categorías a las que pertenecen, según el ID de categoría especificado.
-Obtener Producto por ID
-
-Método: GET
-Ruta: /id/:id
-Método del Controlador: ProductController.getById
-Descripción: Recupera un producto específico según su ID.
-Filtrar Productos - Precio de Mayor a Menor
-
-Método: GET
-Ruta: /filter/highToLowPrice
-Método del Controlador: ProductController.highToLow
-Descripción: Aplica un filtro para recuperar productos ordenados de mayor a menor precio.
-Actualizar Producto por ID
-
-Método: PUT
-Ruta: /id/:id
-Middleware: authentication, isAdmin
-Método del Controlador: ProductController.updateById
-Descripción: Actualiza los detalles de un producto específico. Solo los usuarios autenticados con privilegios de administrador pueden acceder a esta ruta.
-Eliminar Producto por ID
-
-Método: DELETE
-Ruta: /id/:id
-Middleware: authentication, isAdmin
-Método del Controlador: ProductController.delete
-Descripción: Elimina un producto específico del sistema. Solo los usuarios autenticados con privilegios de administrador pueden acceder a esta ruta.
 
