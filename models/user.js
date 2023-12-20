@@ -1,5 +1,5 @@
 "use strict";
-const { Model } = require("sequelize");
+const { Model, BOOLEAN } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -13,29 +13,30 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init(
     {
-      name: {type:DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notNull: {
             msg: "Pls introduce the name",
           },
-        }
-
+        },
       },
-      email: { type: DataTypes.STRING,
-        allowNull:false,
-        validate:{
-          notNull:{
-            msg:"Please introduce email",
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Please introduce email",
           },
-          isEmail:{
-            msg:"Pleasde introduce valid email",
+          isEmail: {
+            msg: "Pleasde introduce valid email",
           },
-        }
-
+        },
       },
       password: DataTypes.STRING,
       role: DataTypes.STRING,
+      confirmed: BOOLEAN,
     },
     {
       sequelize,
@@ -44,9 +45,6 @@ module.exports = (sequelize, DataTypes) => {
   );
   return User;
 };
-
-
-
 
 // const User = sequelize.define('User', {
 //   user: {

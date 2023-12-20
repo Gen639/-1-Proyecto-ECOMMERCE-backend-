@@ -1,10 +1,15 @@
 {
   "development": {
     "username": "root",
-    "password": "8122122_Bbk",
+    "password": "tu contraseña",
     "database": "database_ecommerce",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "jwt_secret": "tu secreto",
+    "credentials": {
+      "user": "email@email.com",
+      "pass": "fiqxnemcdxavfvyx"
+    }
   },
   "test": {
     "username": "root",
