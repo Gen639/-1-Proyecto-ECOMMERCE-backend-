@@ -55,7 +55,7 @@ Desarrollar una API REST que cumpla con los siguientes criterios:
 2. Accede a la API mediante la URL especificada en la documentación.
 
 
-## Endpoints
+# Endpoints
 
 #### Asegúrate de configurar las rutas en tu archivo main.js para que la aplicación pueda manejar las solicitudes correctamente. Agrega las siguientes líneas al archivo main.js:
 #### app.use("/users", require("./routes/users"));
@@ -64,111 +64,111 @@ Desarrollar una API REST que cumpla con los siguientes criterios:
 #### app.use("/orders", require("./routes/orders"));
 #### Esto asegurará que las rutas relacionadas con usuarios, productos, categorías y pedidos estén correctamente enlazadas y puedan ser accedidas a través de las URL correspondientes.
 
-### Usuarios
+## Usuarios
 - Este endpoint se utiliza para recuperar información detallada de un usuario especifico en nuestra api.
 
-#### Crear Usuario
+### Crear Usuario
 
 - **Ruta:** `POST /users` 
 - **Controlador:** `UserController.create`
 
-#### Obtener Todos los Usuarios
+### Obtener Todos los Usuarios
 
 - **Ruta:** `GET /users`
 - **Controlador:** `UserController.getAll`
 
-#### Iniciar Sesión
+### Iniciar Sesión
 
 - **Ruta:** `POST /users / login`
 - **Controlador:** `UserController.login`
 
-#### Obtener Órdenes del Usuario
+### Obtener Órdenes del Usuario
 
 - **Ruta:** `GET /users / getUserOrders/:id`
 - **Parámetro:** `id` (Identificador del Usuario)
 - **Controlador:** `UserController.getUserInfo`
 
-#### Cerrar Sesión
+### Cerrar Sesión
 
 - **Ruta:** `DELETE / users `
 - **Middleware:** `authentication` (Middleware de autenticación)
 - **Controlador:** `UserController.logout`
 
 
-### Categorias
+## Categorias
 
-#### Obtener Todas las Categorías con Productos
+### Obtener Todas las Categorías con Productos
 
 - **Ruta:** `GET / categories`
 - **Controlador:** `CategoryController.obtenerCategoriasConProductos`
 
-#### Obtener Categoría por ID
+### Obtener Categoría por ID
 
 - **Ruta:** `GET /categories /id/:id`
 - **Parámetro:** `id` (Identificador de la Categoría)
 - **Controlador:** `CategoryController.obtenerCategoriaPorId`
 
-#### Buscar Categoría por Nombre
+### Buscar Categoría por Nombre
 
 - **Ruta:** `GET / categories /buscar`
 - **Controlador:** `CategoryController.buscarCategoriaPorNombre`
 
-#### Crear Nueva Categoría
+### Crear Nueva Categoría
 
 - **Ruta:** `POST / categories`
 - **Controlador:** `CategoryController.crearCategoria`
 
-#### Borrar Categoría
+### Borrar Categoría
 
 - **Ruta:** `DELETE / categories / :id`
 - **Parámetro:** `id` (Identificador de la Categoría a borrar)
 - **Controlador:** `CategoryController.borrarCategoria`
 
-#### Actualizar Categoría
+### Actualizar Categoría
 
 - **Ruta:** `PUT / categories /:id`
 - **Parámetro:** `id` (Identificador de la Categoría a actualizar)
 - **Controlador:** `CategoryController.updateCategoria`
 
 
-### Productos
+## Productos
 - Este endpoint se utiliza para recuperar información detallada de los productos en nuestra api.
 
-#### Crear un Nuevo Producto
+### Crear un Nuevo Producto
 
 Este endpoint permite la creación de un nuevo producto. Solo los usuarios autenticados con privilegios de administrador pueden acceder a esta ruta.
 - **Ruta:** `POST /products`
 - **Middleware:** authentication, isAdmin
 - **Controlador:** `ProductController.create`
 
-#### Obtener Todos los Productos
+### Obtener Todos los Productos
 
 - **Ruta:** `GET/products`
 - **Controlador:** `ProductController.getAll`
 
-#### Obtener Producto con Categoría
+### Obtener Producto con Categoría
 
 - **Ruta:** `GET /products/withCategory/:id`
 - **Controlador:** `ProductController.getByIdCateg`
 
-#### Obtener Producto por ID
+### Obtener Producto por ID
 
 - **Ruta:** `GET /products/id/:id`
 - **Controlador:** `ProductController.getById`
 
-#### Filtrar Productos - Precio de Mayor a Menor
+### Filtrar Productos - Precio de Mayor a Menor
 
 - **Ruta:** `GET /products/filter/highToLowPrice`
 - **Controlador:** `ProductController.highToLow`
 
-#### Actualizar Producto por ID
+### Actualizar Producto por ID
 
 Actualiza los detalles de un producto específico. Solo los usuarios autenticados con privilegios de administrador pueden acceder a esta ruta.
 - **Ruta:** `PUT /products/id/:id`
 - **Middleware:** authentication, isAdmin
 - **Controlador:** `ProductController.updateById`
 
-#### Eliminar Producto por ID
+### Eliminar Producto por ID
 
 Elimina un producto específico del sistema. Solo los usuarios autenticados con privilegios de administrador pueden acceder a esta ruta.
 - **Ruta:** `DELETE /products/id/:id`
