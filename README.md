@@ -33,6 +33,9 @@ Desarrollar una API REST que cumpla con los siguientes criterios:
 - Bcrypt para cifrado de contraseñas
 - Git (uso de ramas, commits legibles)
 - Seeders para inicialización de datos
+- Supertest
+- Jest
+- User test
 
 
 
@@ -174,6 +177,87 @@ Elimina un producto específico del sistema. Solo los usuarios autenticados con 
 - **Ruta:** `DELETE /products/id/:id`
 - **Middleware:** authentication, isAdmin
 - **Método del Controlador:** `ProductController.delete`
+
+
+
+## Pedidos
+
+A continuación se detallan los puntos finales (endpoints) disponibles para gestionar pedidos en nuestra API:
+
+### Crear Nuevo Pedido
+
+- **Ruta:** `POST /orders `
+- **Controlador:** `OrderController.create`
+
+### Obtener Todos los Pedidos con Productos
+
+- **Ruta:** `GET /orders `
+- **Controlador:** `OrderController.getAll`
+
+Este endpoint devuelve todos los pedidos existentes junto con la información detallada de los productos asociados a cada pedido.
+
+
+# Relaciones entre Tablas
+
+A continuación se describen las relaciones entre las tablas principales de nuestra base de datos:
+
+## Tabla: Categories
+
+La tabla de Categorías almacena información sobre las distintas categorías de productos disponibles.
+
+### Relaciones:
+
+- **Productos:** Una categoría puede tener muchos productos, pero un producto pertenece a una sola categoría.
+
+## Tabla: Products
+
+La tabla de Productos almacena detalles sobre los productos disponibles en nuestra plataforma.
+
+### Relaciones:
+
+- **Categoría:** Cada producto pertenece a una categoría específica.
+
+- **Pedidos:** Un producto puede estar presente en muchos pedidos, pero un pedido contiene productos específicos.
+
+## Tabla: Users
+
+La tabla de Usuarios almacena información sobre los usuarios registrados en nuestra aplicación.
+
+### Relaciones:
+
+- **Pedidos:** Un usuario puede realizar muchos pedidos, pero cada pedido está asociado a un único usuario.
+
+## Tabla: Orders
+
+La tabla de Pedidos registra información sobre los pedidos realizados por los usuarios.
+
+### Relaciones:
+
+- **Usuarios:** Cada pedido está asociado a un único usuario.
+
+- **Productos:** Un pedido puede contener muchos productos, y cada producto en el pedido está relacionado con un producto específico.
+
+
+
+# Verificación por Correo Electrónico
+
+Implementamos un sistema de verificación por correo electrónico para mejorar la seguridad y la autenticación de los usuarios. A continuación, se describe el proceso y cómo funciona.
+
+## Proceso de Verificación por Correo Electrónico
+
+1. **Registro de Usuario:**
+   - Cuando un usuario se registra en nuestra plataforma, se le pide proporcionar una dirección de correo electrónico válida.
+
+2. **Generación de Token de Verificación:**
+   - Después de un registro exitoso, se genera un token de verificación único asociado al usuario.
+
+3. **Envío del Correo Electrónico de Verificación:**
+   - Utilizamos Nodemailer para enviar un correo electrónico al usuario recién registrado. Este correo contiene un enlace especial que lleva al usuario a la página de verificación.
+
+4. **Verificación del Usuario:**
+   - El usuario hace clic en el enlace del correo electrónico, lo que lo lleva a la página de verificación. Allí, el token se valida y la cuenta del usuario se marca como verificada.
+
+
 
 
 
