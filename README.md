@@ -257,6 +257,17 @@ Implementamos un sistema de verificación por correo electrónico para mejorar l
 4. **Verificación del Usuario:**
    - El usuario hace clic en el enlace del correo electrónico, lo que lo lleva a la página de verificación. Allí, el token se valida y la cuenta del usuario se marca como verificada.
 
+# Las pruebas con Jest
+ - En el proyecto hemos introducido la prueba de Jest y la Superprueba. La prueba llega al punto final de creación del usuario.
+ - Para ejecutar la prueba es necesario cambiar el entorno de "Development" a "Test", de la siguiente manera:
+`export NODE_ENV=test`
+O si estas en windows prueba:
+`SET NODE_ENV=test`
+En PowerShell:
+`$env:NODE_ENV="test"`
+- Puedes iniciar la prueba con el comando
+`npm run test:watch`
+- Tenga en cuenta que probará la creación del usuario, incluida la parte del envío de un correo electrónico de confirmación; para esto se requiere una dirección de correo electrónico válida y la contraseña de la aplicación.
 
 
 
