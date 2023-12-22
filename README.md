@@ -269,7 +269,8 @@ En PowerShell:
 `npm run test:watch`
 - Tenga en cuenta que probará la creación del usuario, incluida la parte del envío de un correo electrónico de confirmación; para esto se requiere una dirección de correo electrónico válida y la contraseña de la aplicación.
 
-
+# Autores 
+[EderJulian](https://github.com/EderJulian) y [Gen639](https://github.com/Gen639)
 
 
 
