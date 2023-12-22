@@ -26,13 +26,13 @@ const UserController = {
       });
       const url = "http://localhost:3000/users/confirm/" + emailToken;
 
-      // await transporter.sendMail({
-      //   to: req.body.email,
-      //   subject: "Confirm your registration",
-      //   html: `<h3>Welcome, you are one step away from registering </h3>
-      //   <a href=${url}> Click to confirm your registration</a>
-      //   `,
-      // });
+      await transporter.sendMail({
+        to: req.body.email,
+        subject: "Confirm your registration",
+        html: `<h3>Welcome, you are one step away from registering </h3>
+        <a href=${url}> Click to confirm your registration</a>
+        `,
+      });
       res.status(201).send({
         message: "User succesfully created",
         user,
